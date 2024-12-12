@@ -1,0 +1,342 @@
+SQL:
+Enter password: ***********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 12
+Server version: 8.0.37 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show database
+    -> show databases;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'database
+show databases' at line 1
+mysql> show databases;
++--------------------------+
+| Database                 |
++--------------------------+
+| book_catalog_system      |
+| book_catalog_system1     |
+| book_catalog_system4     |
+| book_catalog_system78    |
+| book_catalog_system9     |
+| bookinguser              |
+| checkinuser              |
+| fare                     |
+| fare1                    |
+| information_schema       |
+| insurance                |
+| insurancemanagmentsystem |
+| ism                      |
+| mycafe                   |
+| mysql                    |
+| performance_schema       |
+| problem                  |
+| sakila                   |
+| searchuser               |
+| sqlsyntax                |
+| sys                      |
++--------------------------+
+21 rows in set (0.15 sec)
+
+mysql> create database mphasis245;
+Query OK, 1 row affected (0.07 sec)
+
+mysql> use mphasis245;
+Database changed
+mysql> create table student( rollno int, name varchar(30),address varchar(30));
+Query OK, 0 rows affected (0.92 sec)
+
+mysql> insert into student values(101, 'Archana','Mangalore');
+Query OK, 1 row affected (0.08 sec)
+
+mysql> insert into student values(101, 'Chaithra','Bangalore');
+Query OK, 1 row affected (0.06 sec)
+
+mysql> select * from student;
++--------+----------+-----------+
+| rollno | name     | address   |
++--------+----------+-----------+
+|    101 | Archana  | Mangalore |
+|    101 | Chaithra | Bangalore |
++--------+----------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> alter table student add phy int
+    -> ;
+Query OK, 0 rows affected (0.44 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from student;
++--------+----------+-----------+------+
+| rollno | name     | address   | phy  |
++--------+----------+-----------+------+
+|    101 | Archana  | Mangalore | NULL |
+|    101 | Chaithra | Bangalore | NULL |
++--------+----------+-----------+------+
+2 rows in set (0.00 sec)
+
+mysql> p table student add chem int;
+Query OK, 0 rows affected (0.16 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table student add bio int;
+Query OK, 0 rows affected (0.14 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from student;
++--------+----------+-----------+------+------+------+
+| rollno | name     | address   | phy  | chem | bio  |
++--------+----------+-----------+------+------+------+
+|    101 | Archana  | Mangalore | NULL | NULL | NULL |
+|    101 | Chaithra | Bangalore | NULL | NULL | NULL |
++--------+----------+-----------+------+------+------+
+2 rows in set (0.00 sec)
+
+mysql> update student set phy=88,chem=83,bio=76 where rollno=101;
+Query OK, 2 rows affected (0.07 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select * from student;
++--------+----------+-----------+------+------+------+
+| rollno | name     | address   | phy  | chem | bio  |
++--------+----------+-----------+------+------+------+
+|    101 | Archana  | Mangalore |   88 |   83 |   76 |
+|    101 | Chaithra | Bangalore |   88 |   83 |   76 |
++--------+----------+-----------+------+------+------+
+2 rows in set (0.00 sec)
+
+mysql> update student set rollno=102 where name='Chaithra';
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student;
++--------+----------+-----------+------+------+------+
+| rollno | name     | address   | phy  | chem | bio  |
++--------+----------+-----------+------+------+------+
+|    101 | Archana  | Mangalore |   88 |   83 |   76 |
+|    102 | Chaithra | Bangalore |   88 |   83 |   76 |
++--------+----------+-----------+------+------+------+
+2 rows in set (0.00 sec)
+
+mysql> update student set phy=88,chem=83,bio=76 where rollno=101;
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 1  Changed: 0  Warnings: 0
+
+mysql> select * from student;
++--------+----------+-----------+------+------+------+
+| rollno | name     | address   | phy  | chem | bio  |
++--------+----------+-----------+------+------+------+
+|    101 | Archana  | Mangalore |   88 |   83 |   76 |
+|    102 | Chaithra | Bangalore |   88 |   83 |   76 |
++--------+----------+-----------+------+------+------+
+2 rows in set (0.00 sec)
+
+mysql>  update student set phy=99,chem=93,bio=66 where rollno=102;
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student;
++--------+----------+-----------+------+------+------+
+| rollno | name     | address   | phy  | chem | bio  |
++--------+----------+-----------+------+------+------+
+|    101 | Archana  | Mangalore |   88 |   83 |   76 |
+|    102 | Chaithra | Bangalore |   99 |   93 |   66 |
++--------+----------+-----------+------+------+------+
+2 rows in set (0.00 sec)
+
+mysql> alter table student add bio tot int;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'tot int' at line 1
+mysql> alter table student add  tot int;
+Query OK, 0 rows affected (0.14 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table student add avg int;
+Query OK, 0 rows affected (0.15 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from student;
++--------+----------+-----------+------+------+------+------+------+
+| rollno | name     | address   | phy  | chem | bio  | tot  | avg  |
++--------+----------+-----------+------+------+------+------+------+
+|    101 | Archana  | Mangalore |   88 |   83 |   76 | NULL | NULL |
+|    102 | Chaithra | Bangalore |   99 |   93 |   66 | NULL | NULL |
++--------+----------+-----------+------+------+------+------+------+
+2 rows in set (0.00 sec)
+
+mysql> update student set tot=phy+bio+chem;
+Query OK, 2 rows affected (0.06 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select * from student;
++--------+----------+-----------+------+------+------+------+------+
+| rollno | name     | address   | phy  | chem | bio  | tot  | avg  |
++--------+----------+-----------+------+------+------+------+------+
+|    101 | Archana  | Mangalore |   88 |   83 |   76 |  247 | NULL |
+|    102 | Chaithra | Bangalore |   99 |   93 |   66 |  258 | NULL |
++--------+----------+-----------+------+------+------+------+------+
+2 rows in set (0.00 sec)
+
+mysql> update student set avg=tot/3;
+Query OK, 2 rows affected (0.07 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select * from student;
++--------+----------+-----------+------+------+------+------+------+
+| rollno | name     | address   | phy  | chem | bio  | tot  | avg  |
++--------+----------+-----------+------+------+------+------+------+
+|    101 | Archana  | Mangalore |   88 |   83 |   76 |  247 |   82 |
+|    102 | Chaithra | Bangalore |   99 |   93 |   66 |  258 |   86 |
++--------+----------+-----------+------+------+------+------+------+
+2 rows in set (0.00 sec)
+
+mysql> alter table student add dup int;
+Query OK, 0 rows affected (0.15 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from student;
++--------+----------+-----------+------+------+------+------+------+------+
+| rollno | name     | address   | phy  | chem | bio  | tot  | avg  | dup  |
++--------+----------+-----------+------+------+------+------+------+------+
+|    101 | Archana  | Mangalore |   88 |   83 |   76 |  247 |   82 | NULL |
+|    102 | Chaithra | Bangalore |   99 |   93 |   66 |  258 |   86 | NULL |
++--------+----------+-----------+------+------+------+------+------+------+
+2 rows in set (0.00 sec)
+
+mysql> alter table student drop dup;
+Query OK, 0 rows affected (0.18 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from student;
++--------+----------+-----------+------+------+------+------+------+
+| rollno | name     | address   | phy  | chem | bio  | tot  | avg  |
++--------+----------+-----------+------+------+------+------+------+
+|    101 | Archana  | Mangalore |   88 |   83 |   76 |  247 |   82 |
+|    102 | Chaithra | Bangalore |   99 |   93 |   66 |  258 |   86 |
++--------+----------+-----------+------+------+------+------+------+
+2 rows in set (0.00 sec)
+
+mysql> update student set tot=phy+bio+chem where rollno in (101, 102);
+Query OK, 0 rows affected (0.01 sec)
+Rows matched: 2  Changed: 0  Warnings: 0
+
+mysql> select * from student;
++--------+----------+-----------+------+------+------+------+------+
+| rollno | name     | address   | phy  | chem | bio  | tot  | avg  |
++--------+----------+-----------+------+------+------+------+------+
+|    101 | Archana  | Mangalore |   88 |   83 |   76 |  247 |   82 |
+|    102 | Chaithra | Bangalore |   99 |   93 |   66 |  258 |   86 |
++--------+----------+-----------+------+------+------+------+------+
+2 rows in set (0.00 sec)
+
+mysql> alter table student rename name stud_name;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'stud_name' at line 1
+mysql> alter table student modify rename name stud_name;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rename name stud_name' at line 1
+mysql> alter table student rename name to std_name;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'to std_name' at line 1
+mysql> create table employee (empno int, name varchar(50),address varchar(50),salary int, designation varchar(50));
+Query OK, 0 rows affected (0.24 sec)
+
+mysql> select * from employee;
+Empty set (0.00 sec)
+
+mysql> alter table employee add phone_no int, email varchar(150);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'email varchar(150)' at line 1
+mysql> alter table employee add phone_no int;
+Query OK, 0 rows affected (0.21 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table employee add email varchar(50);
+Query OK, 0 rows affected (0.16 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> insert into values(101,Reena,Mnagalore,20000,;se',876767784,'reena@gmail.com');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'values(101,Reena,Mnagalore,20000,' at line 1
+    '>
+    '> ^C
+mysql> insert into values(101,'Reena','Managalore', 20000, 'SE', 9878778788, 'reena@gmail.com');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'values(101,'Reena','Managalore', 20000, 'SE', 9878778788, 'reena@gmail.com')' at line 1
+mysql> insert into values(101,'Reena','Managalore', 20000, 'SE');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'values(101,'Reena','Managalore', 20000, 'SE')' at line 1
+mysql> insert into employee values(101,'Reena','Managalore', 20000, 'SE', 9878778788, 'reena@gmail.com');
+ERROR 1264 (22003): Out of range value for column 'phone_no' at row 1
+mysql> insert into employee values(101,'Reena','Managalore', 20000, 'SE', 987, 'reena@gmail.com');
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select * from employee;
++-------+-------+------------+--------+-------------+----------+-----------------+
+| empno | name  | address    | salary | designation | phone_no | email           |
++-------+-------+------------+--------+-------------+----------+-----------------+
+|   101 | Reena | Managalore |  20000 | SE          |      987 | reena@gmail.com |
++-------+-------+------------+--------+-------------+----------+-----------------+
+1 row in set (0.00 sec)
+
+mysql> insert into employee values(102,'Teena','Pune', 40000, 'SD', 678, 'teena@gmail.com');
+Query OK, 1 row affected (0.08 sec)
+
+mysql> select * from employee;
++-------+-------+------------+--------+-------------+----------+-----------------+
+| empno | name  | address    | salary | designation | phone_no | email           |
++-------+-------+------------+--------+-------------+----------+-----------------+
+|   101 | Reena | Managalore |  20000 | SE          |      987 | reena@gmail.com |
+|   102 | Teena | Pune       |  40000 | SD          |      678 | teena@gmail.com |
++-------+-------+------------+--------+-------------+----------+-----------------+
+2 rows in set (0.00 sec)
+
+mysql> alter table employee modify phone_no int(10);
+Query OK, 0 rows affected, 1 warning (0.10 sec)
+Records: 0  Duplicates: 0  Warnings: 1
+
+mysql> update employee set phone_n0=8787876767 where empno=101;
+ERROR 1054 (42S22): Unknown column 'phone_n0' in 'field list'
+mysql> update employee set phone_no=8787876767 where empno=101;
+ERROR 1264 (22003): Out of range value for column 'phone_no' at row 1
+mysql> select * from employee;
++-------+-------+------------+--------+-------------+----------+-----------------+
+| empno | name  | address    | salary | designation | phone_no | email           |
++-------+-------+------------+--------+-------------+----------+-----------------+
+|   101 | Reena | Managalore |  20000 | SE          |      987 | reena@gmail.com |
+|   102 | Teena | Pune       |  40000 | SD          |      678 | teena@gmail.com |
++-------+-------+------------+--------+-------------+----------+-----------------+
+2 rows in set (0.00 sec)
+
+mysql> update employee set phone_no=8787876767 where empno=101;
+ERROR 1264 (22003): Out of range value for column 'phone_no' at row 1
+mysql> alter table employee modify phone_no int(10);
+Query OK, 0 rows affected, 1 warning (0.08 sec)
+Records: 0  Duplicates: 0  Warnings: 1
+
+mysql> alter table employee modify phone_no int(20);
+Query OK, 0 rows affected, 1 warning (0.15 sec)
+Records: 0  Duplicates: 0  Warnings: 1
+
+mysql> update employee set phone_no=8787876767 where empno=101;
+ERROR 1264 (22003): Out of range value for column 'phone_no' at row 1
+mysql> alter table employee modify phone_no long;
+Query OK, 2 rows affected (1.56 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> update employee set phone_no=8787876767 where empno=101;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee set phone_no=8787778988 where empno=102;
+Query OK, 1 row affected (0.06 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee;
++-------+-------+------------+--------+-------------+------------+-----------------+
+| empno | name  | address    | salary | designation | phone_no   | email           |
++-------+-------+------------+--------+-------------+------------+-----------------+
+|   101 | Reena | Managalore |  20000 | SE          | 8787876767 | reena@gmail.com |
+|   102 | Teena | Pune       |  40000 | SD          | 8787778988 | teena@gmail.com |
++-------+-------+------------+--------+-------------+------------+-----------------+
+2 rows in set (0.00 sec)
+
+mysql>
